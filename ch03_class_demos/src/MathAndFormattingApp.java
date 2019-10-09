@@ -16,6 +16,8 @@ public class MathAndFormattingApp {
 		// max / min
 		System.out.println(Math.max(2, 8));
 		System.out.println(Math.min(2, 8));
+		
+		System.out.println(200%65);
 	}
 
 }
