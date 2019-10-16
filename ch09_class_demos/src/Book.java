@@ -1,5 +1,6 @@
 
-public class Book extends Product {
+public class Book extends Product implements Printable,
+	Cloneable {
 	
 	private String author;
 
@@ -25,6 +26,21 @@ public class Book extends Product {
 	@Override
 	public String toString() {
 		return super.toString() + " by "+ author;
+	}
+
+	@Override
+	public void print() {
+		System.out.println(super.getDescription() +
+		 " by "+ author);
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#clone()
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 	
 	
