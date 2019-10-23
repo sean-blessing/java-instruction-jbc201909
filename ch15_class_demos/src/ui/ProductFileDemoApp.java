@@ -5,7 +5,7 @@ import java.nio.file.*;
 
 import business.Product;
 
-public class ProductFileApp {
+public class ProductFileDemoApp {
 
 	public static void main(String[] args) throws IOException {
 		//establish a file path
