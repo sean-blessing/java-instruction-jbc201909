@@ -19,7 +19,7 @@ public class ContactManagerApp {
 		contacts.add(new Contact("Anne Boehm", null, null));
 		contacts.add(new Contact("Joel Murach", "joel@murach.com", null));
 		
-		while (command!=9) {
+		while (command!=99) {
 			command = Console.getInt(getMenu(), 0, 100);
 			switch (command) {
 			case 1:
@@ -85,6 +85,17 @@ public class ContactManagerApp {
 				System.out.println("Lambda:  Consumer: Print name");
 				processContacts(contacts, c -> System.out.println(c.getName()));
 				break;
+			case 9:
+				System.out.println("Streams - list names for each contact missing phone");
+				contacts.stream().filter(c -> c.getPhone()==null).
+								forEach(c-> System.out.println(c.getName()));
+				break;
+			case 10:
+				System.out.println("Map and reduce contacts to a single string");
+				String csv = contacts.stream().map(c -> c.getName()).
+								reduce("", (a,b) -> a + b + ", ");
+				csv = csv.substring(0,csv.length() -2);
+				System.out.println("All contacts: "+csv);
 			case 99:
 				// exit
 				break;
@@ -108,6 +119,8 @@ public class ContactManagerApp {
 					 "6 - Lambda: Contacts named Mike Murach\n"+
 					 "7 - Lambda Predicate: No Phone Contacts\n"+
 					 "8 - Lambda Consumer: Print names\n"+
+					 "9 - Stream of contact names w/ no phone\n"+
+					 "10 - Map and reduce names to a single string\n"+
 					 "99 - Exit\n"+
 					 "Command: ";
 		return str;
