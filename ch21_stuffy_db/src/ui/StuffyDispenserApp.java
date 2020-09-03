@@ -1,5 +1,8 @@
 package ui;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import business.Stuffy;
 import db.StuffyDB;
 import util.Console;
@@ -15,7 +18,27 @@ public class StuffyDispenserApp {
 			command = Console.getInt(getMenu(), 0, 7);
 			switch (command) {
 				case 1:
-					//List
+					//List all stuffies
+					ArrayList<Stuffy> stuffies = sdb.list();
+					
+					// option 1 - indexed for loop
+//					for (int i=0; i< stuffies.size(); i++) {
+//						Stuffy s = stuffies.get(i);
+//						System.out.println(s);
+//					}
+					// option 2 - enhanced for loop / for-each
+//					for (Stuffy s: stuffies) {
+//						System.out.println(s);
+//					}
+					// option 3 - iterator
+//					Iterator<Stuffy> si = stuffies.iterator();
+//					while (si.hasNext()) {
+//						Stuffy s = si.next();
+//						System.out.println(s);
+//
+//					}
+					// option 4 - streams
+					stuffies.stream().forEach(s -> System.out.println(s));
 					break;
 				case 2:
 					// Get

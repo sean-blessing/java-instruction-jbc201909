@@ -1,6 +1,8 @@
 package db;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import business.Stuffy;
 
@@ -12,6 +14,28 @@ public class StuffyDB {
 		String pwd = "sesame";
 		Connection conn = DriverManager.getConnection(dbUrl, username, pwd);
 		return conn;
+	}
+	
+	public ArrayList<Stuffy> list() {
+		String sql = "select * from stuffy";
+		ArrayList<Stuffy> stuffies = new ArrayList<>();
+		try (Statement stmt = getConnection().createStatement();
+			 ResultSet rs = stmt.executeQuery(sql)) {
+			while (rs.next()) {
+				// result set has a stuffy
+				// process the result set row
+				int id2 = rs.getInt(1);
+				String type = rs.getString(2);
+				String color = rs.getString(3);
+				String size = rs.getString(4);
+				int limbs = rs.getInt(5);
+				Stuffy s = new Stuffy(id2, type, color, size, limbs);
+				stuffies.add(s);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return stuffies;
 	}
 	
 	public Stuffy get(int id) {
